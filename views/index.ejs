@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard - College App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+    }
+
+    .navbar {
+      background: #007bff;
+      color: white;
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .container {
+      padding: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      padding: 10px 15px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    .logout {
+      background: red;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    @media(max-width: 768px) {
+      .row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="navbar">
+    <h2>College App Admin</h2>
+
+    <form action="/logout" method="GET">
+      <button class="logout">Logout</button>
+    </form>
+  </div>
+
+  <div class="container">
+
+    <!-- Upload PDF Card -->
+    <div class="card">
+      <h3>Upload PDF</h3>
+
+      <form action="/pdf/upload" method="POST" enctype="multipart/form-data">
+
+        <input type="text" name="subjectName" placeholder="Subject Name" required />
+
+        <input type="text" name="subjectCode" placeholder="Subject Code" required />
+
+        <select name="type" required>
+          <option value="pyq">PYQ</option>
+          <option value="important">Important Questions</option>
+        </select>
+
+        <input type="file" name="file" accept="application/pdf" required />
+
+        <button type="submit">Upload</button>
+      </form>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="card">
+      <h3>Quick Actions</h3>
+
+      <div class="row">
+        <form action="/pdf" method="GET">
+          <input type="hidden" name="type" value="pyq">
+          <button type="submit">View PYQs</button>
+        </form>
+
+        <form action="/pdf" method="GET">
+          <input type="hidden" name="type" value="important">
+          <button type="submit">View Important</button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
