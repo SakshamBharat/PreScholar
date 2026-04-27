@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PDF List</title>
+
+  <style>
+    body {
+      font-family: Arial;
+      background: #f4f6f8;
+      padding: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 15px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    a {
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    .top {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="top">
+    <h2><%= type ? type.toUpperCase() : "All PDFs" %></h2>
+    <a href="/">⬅ Back to Dashboard</a>
+  </div>
+
+  <% if (pdfs.length === 0) { %>
+    <p>No PDFs found.</p>
+  <% } %>
+
+  <% pdfs.forEach(pdf => { %>
+    <div class="card">
+      <h3><%= pdf.subjectName %></h3>
+      <p>Code: <%= pdf.subjectCode %></p>
+      <p>Type: <%= pdf.type %></p>
+
+      <a href="<%= pdf.fileUrl %>" target="_blank">📄 View PDF</a>
+    </div>
+  <% }) %>
+
+</body>
+</html>

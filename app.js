@@ -9,6 +9,7 @@ require("dotenv").config();
 var session = require("express-session");
 var passport = require("passport");
 var connectDB = require("./config/db");
+
 require("./config/passport")(passport);
 
 var indexRouter = require("./routes/index");
